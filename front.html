@@ -1,0 +1,98 @@
+
+<!DOCTYPE html>
+<html>
+  <!--
+    front.html
+    Author Stefano Gregis 329936 Giorgio Ajmone 329846
+    Date: 18/11/2022
+  --> 
+   
+<head>
+    <title>Greenhouse</title>
+    <script src = "/socket.io/socket.io.js" ></script>
+    <link href="output.css" rel="stylesheet">
+    <script src="handleData.js"></script> 
+</head>
+<body onload="update()">
+  <div class="hero min-h-16 bg-base-200">
+    <div class="hero-content text-center">
+      <div class="max-w-md">
+        <h1 class="text-5xl font-bold">Welcome,</h1>
+        <p class="py-6">This is a front-end page to control a greenhose</p>
+      </div>
+    </div>
+</div>
+  <div class="grid grid-cols-1">
+        <div class="stats shadow max-h-auto border-2 border-gray-700">
+          <div class="stat place-items-center">
+            <div class="grid grid-cols-1">
+            <div class="stat-figure">
+                <div class="stat-title">HEATER</div>
+                <div id="currentH" class="stat-value">-</div>
+                <button onclick="changeStateHeater(1)" class="btn mt-2 mr-2">ON</button>
+                <button onclick="changeStateHeater(0)" class="btn mt-2">OFF</button>
+            </div>
+            </div>
+        </div>
+            <div class="stat place-items-center">
+              <div class="grid grid-cols-1">
+                <div class="stat-figure">
+                  <div class="stat-title">WINDOW</div>
+                  <div id="currentW" class="stat-value mt-2">-</div>
+                  <button onclick="changeStateWindow(1)" class="btn mt-2 mr-2">OPEN</button>
+                  <button onclick="changeStateWindow(0)" class="btn mt-2">CLOSED</button>
+                </div>
+              </div>
+            </div>
+            <div class="stat place-items-center">
+              <div class="grid grid-cols-1">  
+               <div class="stat-figure">
+                <div class="stat-title">TEMPERATURE & HUMIDITY</div>
+                <p id="currentTH0" class="stat-value mt-2">-</p>
+                <p id="currentTH1" class="stat-value mt-2">-</p>
+               </div>
+              </div>
+            </div>
+            <div class="stat place-items-center justify-center">
+              <div class="grid grid-cols-1">
+              <div class="stat-figure">
+                <div class="stat-title">LIGHT LEVEL</div>
+                <div id="currentL" class="stat-value">-</div>
+                <div class="form-control">
+                      <p class="stat-title">SET LEVEL: </p>
+                      <div class="flex">
+                        <p id="inputL" class="stat-value mt-2">-</p>
+                        <p id="inputL" class="stat-value mt-2">%</p>
+                      </div>
+                    <input type="range" id="setLight" min="0" max="100" step="1" value="50" onchange="setText()" class="range mt-2"/>
+                    <button onclick="changeStateLight()" class="btn mt-2">submit</button>
+              </div>     
+            </div>
+           </div>
+          </div>
+         </div>
+        </div>
+        <div class="grid grid-cols-1 place-items-center">
+          <div class="card w-96 shadow-xl my-10 border-2 border-gray-700">
+            <div class="grid grid-cols-1 gap-1 mb-4 place-items-center">
+              <div class="hero-content">
+                <img id="imgPlant" src="questionmark.jpg" class="w-48 h-48 rounded-lg shadow-2xl" />
+              </div>
+              <div class="stat-title">Choose a mode</div>
+              <select id="plants" onchange="handlePlants()" class="select select-bordered w-full max-w-xs">
+                <option value="0">Manual</option>
+                <option value="1">Cactus</option>
+                <option value="2">Basil</option>
+                <option value="3">Bonsai</option>
+                <option value="4">Strawberry</option>
+              </select>
+            </div>
+          </div>
+        </div>
+    <footer class="footer footer-center r p-4 bg-base-300 text-base-content">
+       <div>
+           <p>Realized by Gregis Stefano and Ajmone Giorgio</p>
+       </div>
+    </footer>
+</body>
+</html>
